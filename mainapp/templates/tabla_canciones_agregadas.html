@@ -1,0 +1,131 @@
+{% extends 'layout.html' %}
+
+{% block title %} {{titulo}} {% endblock %}
+
+{% block container %}
+
+
+<div class="container contenedor_vista_cancion">
+
+
+  <div class="row row-offcanvas row-offcanvas-right" id="content-cancion">
+
+    <div class="col-sm-12 col-md-2 col-lg-2 sidebar-offcanvas" id="sidebar">
+
+
+
+    </div>
+
+    <div class="col-12 col-md-8" id="pagina">
+
+      <div class="row">
+        <div class="card-body text-center">
+          <h5 class="card-title h4  font-weight-bold">{{titulo}}</h5>
+        </div>
+      </div>
+
+
+
+      <div class="list-group">
+
+         {% if messages %}
+            {% for message in messages  %}
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+                </button>
+               </div>
+            {% endfor %}
+          {% endif %}
+
+
+          <form class="form-inline md-form mr-auto mb-2"  method="GET">
+            <input class="form-control mr-sm-2" type="search" name="buscar_cancion" 
+            placeholder="Buscar canción" value="{{request.GET.buscar_cancion}}" aria-label="Search">
+            <button class="btn peach-gradient btn-rounded btn-sm my-0" type="submit">Buscar</button>
+          </form>
+
+        
+          {% include 'pagination.html' %}
+
+          {% if canciones %}
+            {% else %}
+            <p class="text-center"><span class="font-weight-bold text-warning">No se encontraron canciones</span></p>
+          {% endif %}
+
+        {% for cancion in canciones  %}
+
+        <a href=""
+          class="list-group-item list-group-item-action flex-column align-items-start z-depth-1" style="margin-bottom: 10px; border-radius: 5px;">
+            <div class="row">
+              <div class="col-md-8 col-lg-8 col-sm-12">
+
+                  <h5 class="mb-2 h5 font-weight-bold">{{cancion.titulo}}</h5>
+                  <p class="mb-2">{{cancion.autor}}</p>
+                  
+              
+              </div>
+              <div class="col-md-4 col-lg-4 col-sm-12 text-right">
+
+                {% if cancion.estado == "nuevo" %}
+                  <small class="text-muted text-success">Nuevo</small>
+                {% endif %}
+                <br>
+                <div class="row float-right">
+                  <form action="{% url 'show_form_worship_edit' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{ request.path }}" name="pagina_actual">
+                    <input type="hidden" value="{{cancion.numero}}" name="id_cancion">
+                    <button type="submit" class="btn_editar_lista z-depth-1"><i class="fas fa-pen"></i></button>
+                  </form>
+                  <form action="" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{ request.path }}" name="pagina_actual">
+                    <input type="hidden" value="{{cancion.id}}" name="id_cancion">
+                    <input type="hidden" value="{{cancion.titulo}}" name="titulo">
+                    <button type="submit" class="btn_eliminar_lista z-depth-1" ><i class="fas fa-trash"></i></button>
+                  </form>
+                </div>
+              
+              </div>
+              
+          </div>
+           <small class="text-muted text-warning float-right">{{cancion.mensaje_publicacion|safe}}</small>
+        </a>
+
+
+
+        {% endfor %}
+
+
+      </div>
+
+        
+
+
+
+    </div>
+    <!--/span-->
+
+    <div class="col-sm-12 col-md-2 col-lg-2 sidebar-offcanvas" id="sidebar">
+
+
+    </div>
+    <!--/span-->
+  </div>
+  <!--/row-->
+
+</div>
+<!--/.container-->
+
+
+
+
+
+{% endblock  %}
+
+
+
+
+<!-- Optional JavaScript -->

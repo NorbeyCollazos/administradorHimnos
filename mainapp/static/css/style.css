@@ -1,0 +1,284 @@
+
+.btn_editar_lista, .btn_eliminar_lista{
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 50%;
+    margin-right: 3px;
+    color: #fefefe;
+    border: none;
+}
+
+strong{
+    font-weight: bold !important;
+}
+
+.baner_publicidad_top{
+    width: 450px;
+    height: 150px;
+    background: blue;
+}
+
+.btn_editar_lista{
+    background-color: blue;
+}
+
+.btn_eliminar_lista{
+    background-color: red;
+}
+
+.chord0, .chord1{
+    color: #ff5722;
+    font-weight: bold;
+    
+}
+
+#content-video{
+    display: none;
+}
+
+.contenedor_pagina{
+    margin-top: 90px !important;
+}
+
+.contenedor_vista_cancion{
+    margin-top: 90px;
+
+}
+
+.input_perfil{
+    font-weight: bold;
+}
+
+pre{
+    border: none;
+}
+
+.textarea_cancion{
+    font-size: 30px;
+}
+
+.label_user{
+    color: violet;
+}
+
+.btn-buscar{
+    background-color: #F37E21 !important;
+    color: wheat;
+    font-weight: bold;
+    border: none !important;
+}
+
+.flotante, .flotante_ver_cancion {
+    width: 50px;
+    height: 50px;
+    padding: 15px;
+    border-radius: 50%;
+        
+}
+
+.flotante_ver_cancion{
+    margin-top: -80px;
+    z-index: 1000;
+}
+
+
+.nav-link{
+    color: whitesmoke !important;
+}
+
+.nav-link:hover{
+    background-color: #ffffff2d;
+    border-radius: 4px;
+}
+
+.jum-inicial{
+    background-color: #FFEEE8;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+.center-cropped {
+    object-fit: cover; /* Do not scale the image */
+    object-position: 30% 5%; /* Center the image within the element */
+    height: 180px;
+    width: 100%;
+}
+
+.foto-cantante{
+    object-fit: cover; /* Do not scale the image */
+    object-position: 30% 5%; /* Center the image within the element */
+    height: 100px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+#content-artista{
+    margin-bottom: 10px;
+    padding-top: 10px;
+    border-radius: 25px;
+    cursor: pointer !important;
+}
+
+
+
+#card-nombre-artista{
+    margin-bottom: 15px;
+    background-color: #FFEEE8;
+    margin-top: 60px;
+    border-radius: 15px;
+}
+
+#barra-canciones{
+    background-color: #ff5722;
+    border: none;
+}
+
+
+
+#content-cancion{
+    margin-top: 15px;
+}
+
+#buscador-cancion{
+    border-radius: 25px !important;
+}
+
+
+/*PARA LOS ESTILOS DEL SCROLLBAR DE CONTENEDOR DE ARTISTAS */
+#lista-artistas{
+    width:100%; 
+    height:550px; 
+    overflow: scroll; 
+    overflow-x: hidden;
+    
+}
+
+#lista-artistas img{
+    border-radius: 50%;
+}
+
+#lista-artistas::-webkit-scrollbar {
+    width: 8px;     /* Tamaño del scroll en vertical */
+    height: 8px;    /* Tamaño del scroll en horizontal */
+    
+}
+
+/* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+#lista-artistas::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+#lista-artistas::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+/* Cambiamos el fondo cuando esté en active */
+#lista-artistas::-webkit-scrollbar-thumb:active {
+    background-color: #999999;
+}
+
+/* Ponemos un color de fondo y redondeamos las esquinas del track */
+#lista-artistas::-webkit-scrollbar-track {
+    background: #e1e1e1;
+    border-radius: 4px;
+}
+/* Cambiamos el fondo cuando esté en active o hover */
+#lista-artistas::-webkit-scrollbar-track:hover,
+#lista-artistas::-webkit-scrollbar-track:active {
+  background: #d4d4d4;
+}
+
+
+#boton-opciones{
+    display: none;
+    background-color: #ff5722;
+    border: none;
+}
+
+#botones-sig-ant a{
+    background-color: #ff5722;
+    border: none;
+    margin-bottom: 25px;
+}
+
+.enlace-biografia{
+    margin-left: 10px;
+}
+.parrafo-biografia{
+    display: block;
+    text-align: justify;
+}
+
+
+
+
+
+
+footer{
+    margin-top: 15px;
+}
+
+footer p{
+    text-align: right;
+    padding: 15px;
+}
+
+
+
+
+
+
+  @media screen and (min-width: 240px) and (max-width: 600px){
+
+    .display-4{
+        font-size: x-large;
+        font-weight: bold;
+    }
+    .lead{
+        font-size: small;
+    }
+
+    #content-logo{
+        display: none;
+    }
+
+    #content-botones-opciones{
+        display: none;
+        margin-top: 10px;
+    }
+
+    #boton-opciones{
+        display: block;
+    }
+
+    #publicidad-izquierda{
+        display: none;
+    }
+
+    #publicidad-right{
+        display: none;
+    }
+
+    #publicidad-left{
+        display: none;
+    }
+
+    .titulo_inicial{
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .contenedor_vista_cancion{
+        margin-top: 70px;
+    
+    }
+    
+
+
+
+  }
+  
+  @media screen and (min-width: 800px) {
+    
+  }
