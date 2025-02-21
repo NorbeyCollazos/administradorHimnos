@@ -1,22 +1,38 @@
 from django.shortcuts import render
-from mainapp.models import Himno, Alabanza, HimnosFeAlabanza
+from mainapp.models import Himno, Alabanza, HimnosFeAlabanza, Himnosycoros, Categorias, Tipos, Notas
 from django.contrib import messages
 from django.shortcuts import render, HttpResponse, redirect, HttpResponseRedirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
 
 
 # Create your views here.
-def register_worship(request):
 
-    return render(request, 'guardar_cancion.html',{
-        'titulo': "Registrar Himno de Adoración",
-        'tipo': "Adoracion",
-        'url_save': "save_worship"
+def index(request):
+
+    return render(request, 'index.html', {
+        'titulo': "Administrador de Himnario con Notas"
+        
     })
 
 
-def save_worship(request):
+def register_song(request):
+
+    notas = Notas.objects.order_by('nota')
+    tipos = Tipos.objects.order_by('tipo')
+    categorias = Categorias.objects.order_by('categoria')
+
+    return render(request, 'guardar_cancion.html',{
+        'titulo': "Registrar Himno o Coro",
+        'notas': notas,
+        'tipos': tipos,
+        'categorias': categorias
+    })
+
+
+def save_song(request):
 
     if request.method == "POST":
         
@@ -27,21 +43,23 @@ def save_worship(request):
         urlvideo = request.POST['urlvideo']
         himno = request.POST['cancion']
         autor = request.POST['autor']
+        categoria = request.POST['categoria']
 
-        worship = Himno(
+        songs = Himnosycoros(
             titulo = titulo,
             tono = tono,
             nota = nota,
             tipo = tipo,
             autor = autor,
             himno = himno,
-            url = urlvideo
+            url = urlvideo,
+            categoria = categoria
         )
 
-        worship.save()
+        songs.save()
         messages.success(request, f'Se ha guardado el himno {titulo}')
 
-        return redirect('register_worship')
+        return redirect('table_song')
 
     else:
         messages.error(request, 'No se ha podido guardar')
@@ -129,24 +147,24 @@ def save_hymns(request):
 
 
 
-def table_worship(request):
+def table_song(request):
 
     queryset = request.GET.get("buscar_cancion")
-    worship = Himno.objects.order_by('titulo')
+    song = Himnosycoros.objects.order_by('titulo')
 
     if queryset:
         query = Q(titulo__contains=queryset)
         query.add(Q(himno__contains=queryset), Q.OR)
 
-        worship = Himno.objects.filter(query)
+        song = Himnosycoros.objects.filter(query)
 
-    paginator = Paginator(worship, 10)
+    paginator = Paginator(song, 10)
     #recoger numero de pagina
     page = request.GET.get('page')
     page_canciones = paginator.get_page(page)
 
     return render(request, 'tabla_canciones_agregadas.html',{
-        'titulo': "Himnos de Adoración",
+        'titulo': "Himnos y Coros",
         'canciones': page_canciones,  
         'paginator': paginator  
     })
@@ -184,6 +202,7 @@ def table_hymns(request):
     if queryset:
         query = Q(titulo__contains=queryset)
         query.add(Q(himno__contains=queryset), Q.OR)
+        query.add(Q(categoria__contains=queryset), Q.OR)
 
         hymns = HimnosFeAlabanza.objects.filter(query)
 
@@ -200,13 +219,13 @@ def table_hymns(request):
 
 
 
-def show_form_worship_edit(request):
+def show_form_song_edit(request):
 
     if request.method == "POST":
         id_cancion = request.POST['id_cancion']
         pagina_actual = request.POST['pagina_actual']
 
-    cancion = Himno.objects.get(pk=id_cancion)
+    cancion = Himnosycoros.objects.get(pk=id_cancion)
 
     return render(request, 'editar_cancion.html',{
         'titulo': "Editar canción",
@@ -215,7 +234,7 @@ def show_form_worship_edit(request):
     })
 
 
-def edit_worship(request):
+def edit_song(request):
 
     if request.method == "POST":
         
@@ -228,23 +247,30 @@ def edit_worship(request):
         himno = request.POST['cancion']
         autor = request.POST['autor']
         estado = request.POST['estado']
+        categoria = request.POST['categoria']
 
         pagina_actual = request.POST['pagina_actual']
 
-        worship = Himno.objects.get(pk=id_himno)
-        worship.titulo = titulo
-        worship.tono = tono
-        worship.nota = nota
-        worship.tipo = tipo
-        worship.autor = autor
-        worship.himno = himno
-        worship.url = urlvideo
-        worship.estado = estado
+        song = Himnosycoros.objects.get(pk=id_himno)
+        song.titulo = titulo
+        song.tono = tono
+        song.nota = nota
+        song.tipo = tipo
+        song.autor = autor
+        song.himno = himno
+        song.url = urlvideo
+        song.estado = estado
+        song.categoria = categoria
 
-        worship.save()
+        song.save()
         messages.success(request, f'Se ha editado el himno {titulo}')
 
         return redirect(pagina_actual)
 
     else:
         messages.error(request, 'No se ha podido editar')
+
+
+def user_logout(request):
+    logout(request)
+    return redirect('index')

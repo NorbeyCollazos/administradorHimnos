@@ -62,7 +62,7 @@
               <div class="col-md-8 col-lg-8 col-sm-12">
 
                   <h5 class="mb-2 h5 font-weight-bold">{{cancion.titulo}}</h5>
-                  <p class="mb-2">{{cancion.autor}}</p>
+                  <p class="mb-2">{{cancion.categoria}}</p>
                   
               
               </div>
@@ -73,10 +73,10 @@
                 {% endif %}
                 <br>
                 <div class="row float-right">
-                  <form action="{% url 'show_form_worship_edit' %}" method="POST">
+                  <form action="{% url 'show_form_song_edit' %}" method="POST">
                     {% csrf_token %}
                     <input type="hidden" value="{{ request.path }}" name="pagina_actual">
-                    <input type="hidden" value="{{cancion.numero}}" name="id_cancion">
+                    <input type="hidden" value="{{cancion.id_himno}}" name="id_cancion">
                     <button type="submit" class="btn_editar_lista z-depth-1"><i class="fas fa-pen"></i></button>
                   </form>
                   <form action="" method="POST">

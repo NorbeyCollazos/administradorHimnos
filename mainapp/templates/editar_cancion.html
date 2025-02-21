@@ -69,11 +69,11 @@ El firmamento y las estrellas mil
         Instrucciones <i class="fas fa-question-circle"></i>
       </button>
 
-      <form method="POST" action="{% url 'data_worship_edit' %}">
+      <form method="POST" action="{% url 'data_song_edit' %}">
 
         {% csrf_token %}
 
-        <input type="hidden" value="{{cancion.numero}}" name="id_cancion">
+        <input type="hidden" value="{{cancion.id_himno}}" name="id_cancion">
         <input type="hidden" value="{{pagina_actual}}" name="pagina_actual">
 
         <!-- Material input -->
@@ -100,6 +100,10 @@ El firmamento y las estrellas mil
           <div class="col md-form">
             <input type="text" id="estado" name="estado" value="{{cancion.estado}}" class="form-control">
             <label for="estado">Estado</label>
+          </div>
+          <div class="col md-form">
+            <input type="text" id="categoria" name="categoria" value="{{cancion.categoria}}" class="form-control">
+            <label for="categoria">Categoria</label>
           </div>
         </div>
 
