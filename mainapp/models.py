@@ -75,9 +75,9 @@ class Himnosycoros(models.Model):
         ('Evangelisticos', 'Evangelisticos'),
     ]
     tipo = models.CharField(max_length=25, choices=tipos, default="Alabanza")
-    autor = models.CharField(max_length=50, verbose_name="Autor", null=True, blank=True)
+    autor = models.CharField(max_length=50, default="", verbose_name="Autor", null=True, blank=True)
     himno = models.TextField()
-    url = models.CharField(max_length=150, verbose_name="Url", null=True, blank=True)
+    url = models.CharField(max_length=150, verbose_name="Url", default="", null=True, blank=True)
     estados = [
         ('nuevo', 'nuevo'),
         ('', ''),
