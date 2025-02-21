@@ -25,7 +25,7 @@ SECRET_KEY = 'qv)&jglx2vk#80^+ngof6fu9zfmhff(adi2rz2zni@8tg+54x='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [*]
+ALLOWED_HOSTS = ['*']
 
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
