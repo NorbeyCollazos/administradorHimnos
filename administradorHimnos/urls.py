@@ -25,16 +25,12 @@ urlpatterns = [
     path('logout/',mainapp.views.user_logout, name='user_logout'),
     path('register-song/',mainapp.views.register_song, name='register_song'),
     path('save-song/',mainapp.views.save_song, name='save_song'),
-    path('register-praise/',mainapp.views.register_praise, name='register_praise'),
-    path('save-praise/',mainapp.views.save_praise, name='save_praise'),
-    path('register-hymns/',mainapp.views.register_hymns, name='register_hymns'),
-    path('save-hymns/',mainapp.views.save_hymns, name='save_hymns'),
-
+    
     path('table-song/',mainapp.views.table_song, name='table_song'),
-    path('table-praise/',mainapp.views.table_praise, name='table_praise'),
-    path('table-hymns/',mainapp.views.table_hymns, name='table_hymns'),
-
+    
     path('song-edit/',mainapp.views.show_form_song_edit, name='show_form_song_edit'),
     path('data-song-edit/',mainapp.views.edit_song, name='data_song_edit'),
+
+    path('cancion/<int:id_cancion>',mainapp.views.see_song, name='cancion'),
 
 ]

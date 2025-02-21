@@ -27,9 +27,14 @@ strong{
 }
 
 .chord0, .chord1{
-    color: #ff5722;
+    color: #192ee6;
     font-weight: bold;
     
+}
+
+.content_see_song{
+    background-color: #192ee6 !important;
+    font-weight: bold;
 }
 
 #content-video{
@@ -62,7 +67,7 @@ pre{
 }
 
 .btn-buscar{
-    background-color: #F37E21 !important;
+    background-color: #192ee6 !important;
     color: wheat;
     font-weight: bold;
     border: none !important;
@@ -129,7 +134,7 @@ pre{
 }
 
 #barra-canciones{
-    background-color: #ff5722;
+    background-color: #192ee6;
     border: none;
 }
 
@@ -192,12 +197,12 @@ pre{
 
 #boton-opciones{
     display: none;
-    background-color: #ff5722;
+    background-color: #192ee6;
     border: none;
 }
 
 #botones-sig-ant a{
-    background-color: #ff5722;
+    background-color: #192ee6;
     border: none;
     margin-bottom: 25px;
 }

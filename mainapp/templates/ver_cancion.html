@@ -1,0 +1,109 @@
+{% extends 'layout.html' %}
+
+{% block title %} {{cancion.titulo}} {% endblock %}
+
+{% block container %}
+
+<!--Modal: modalRelatedContent-->
+<div class="modal fade right" id="modalRelatedContent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true" data-backdrop="false">
+  <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-warning" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <p class="heading">{{cancion.titulo}}</p>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+
+        <div class="row">
+          <iframe width="100%" height="315" src=" {{ "https://www.youtube.com/embed/"|add:cancion.url }}"
+            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+
+        </div>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!--Modal: modalRelatedContent-->
+
+
+
+
+<div class="container contenedor_vista_cancion">
+
+  <div class="row row-offcanvas row-offcanvas-right" id="content-cancion">
+
+    <div class="col-sm-12 col-md-2 col-lg-2 sidebar-offcanvas" id="sidebar">
+
+
+      <div id="content-botones-opciones">
+        <button type="button" class="btn blue-gradient" id="transposeUp"><i class="fas fa-sort-amount-up-alt"></i>
+          Subir 1/2 tono</button>
+        <button type="button" class="btn blue-gradient " id="transposeDown"><i class="fas fa-sort-amount-down"></i>
+          Bajar 1/2 tono</button>
+        <button type="button" class="btn blue-gradient " data-toggle="modal" data-target="#modalRelatedContent"><i
+            class="fab fa-youtube"></i> Escuchar</button>
+        <button type="button" class="btn blue-gradient " id="print_btn"><i class="fas fa-print"></i> Imprimir</button>
+      
+        {% if user.username %}
+        <form action="{% url 'show_form_song_edit' %}" method="POST">
+          {% csrf_token %}
+          <input type="hidden" value="{{ request.path }}" name="pagina_actual">
+          <input type="hidden" value="{{cancion.id_himno}}" name="id_cancion">
+          <button type="submit" class="btn blue-gradient"><i class="fas fa-edit"></i> Editar</button>
+        </form>
+        {% endif %}
+        
+      </div><br>
+      
+
+
+
+    </div>
+
+    <div class="col-12 col-md-7 content_see_song" id="pagina" style="background-image: url('../static/images/logofondo.png'); background-repeat: no-repeat; background-position: center center;">
+
+      <h4><span class="font-weight-bold"> {{cancion.titulo}} </span></h4>
+      <hr>
+
+      <button type="button" class="btn btn-deep-orange flotante_ver_cancion float-right" id="boton-opciones">
+        <i class="fas fa-plus"></i></button>
+
+
+      <pre style="font-family: 'Georgia'; font-size: 18px;"> {{letra | safe}} </pre>
+
+    </div>
+    <!--/span-->
+
+    <div class="col-sm-12 col-md-3 col-lg-3 sidebar-offcanvas" id="sidebar">
+
+      <div class="list-group text-right">
+
+      
+      </div>
+
+    </div>
+    <!--/span-->
+  </div>
+  <!--/row-->
+
+</div>
+<!--/.container-->
+
+
+
+
+
+{% endblock  %}
+
+
+<!-- Optional JavaScript -->

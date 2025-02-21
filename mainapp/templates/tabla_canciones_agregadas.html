@@ -49,14 +49,9 @@
         
           {% include 'pagination.html' %}
 
-          {% if canciones %}
-            {% else %}
-            <p class="text-center"><span class="font-weight-bold text-warning">No se encontraron canciones</span></p>
-          {% endif %}
-
         {% for cancion in canciones  %}
 
-        <a href=""
+        <a href="{% url 'cancion' id_cancion=cancion.id_himno %}"
           class="list-group-item list-group-item-action flex-column align-items-start z-depth-1" style="margin-bottom: 10px; border-radius: 5px;">
             <div class="row">
               <div class="col-md-8 col-lg-8 col-sm-12">
@@ -79,19 +74,12 @@
                     <input type="hidden" value="{{cancion.id_himno}}" name="id_cancion">
                     <button type="submit" class="btn_editar_lista z-depth-1"><i class="fas fa-pen"></i></button>
                   </form>
-                  <form action="" method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" value="{{ request.path }}" name="pagina_actual">
-                    <input type="hidden" value="{{cancion.id}}" name="id_cancion">
-                    <input type="hidden" value="{{cancion.titulo}}" name="titulo">
-                    <button type="submit" class="btn_eliminar_lista z-depth-1" ><i class="fas fa-trash"></i></button>
-                  </form>
                 </div>
               
               </div>
               
           </div>
-           <small class="text-muted text-warning float-right">{{cancion.mensaje_publicacion|safe}}</small>
+           <small class="text-muted text-warning float-right"></small>
         </a>
 
 

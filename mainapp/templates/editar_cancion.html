@@ -4,55 +4,6 @@
 
 {% block container %}
 
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="modal_instrucciones_editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Instrucciones</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <span class="text-center font-weight-bold">Siga las siguientes instrucciones para guardar la canción
-          correctamente</span> <br><br>
-        1) Ingrese el título de la canción en el campo correspondiente <br><br>
-        2) Seleccione el Artista <br><br>
-        3) para ingresar la url del video, dirijase a youtube.com y busque la canción, luego copia la última parte de la
-        url depues del = ejemplo: <br>
-        {% load static %}
-        <img src="{% static 'images/img_copy_paste.png' %}" alt=""><br>
-        posteriormente la pega en el campo correspondiente a (Url del video) <br><br>
-        4) Seleccione el tipo de acordes que va a utilizar, por ejemplo: si va a utilizar acordes en formato inglés {C D
-        E F G A B} deberá seleccionar la opción (Acordes en inglés) <br> si va a utilizar acordes en formato español {DO
-        RE MI FA SOL LA SI} deberá seleccionar la opción (Acordes en español)
-        <br><br> 5) Encierre los acordes en llaves ‘{ }’ por ejemplo: <br>
-        <pre>
-         {A}
-Señor mi Dios
-                   {D}
-Al contemplar los cielos
-        {A      Bm       E      A}
-El firmamento y las estrellas mil  
-          </pre>
-      </div>
-      <div class="modal-footer">
-        <p>Cualquier inquietud puede escribir al correo cancioneroclam@gmail.com</p>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Entendido</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
 <div class="container contenedor_vista_cancion">
 
 

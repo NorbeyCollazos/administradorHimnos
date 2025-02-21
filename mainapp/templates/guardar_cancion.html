@@ -5,54 +5,6 @@
 {% block container %}
 
 
-<!-- Modal -->
-<div class="modal fade" id="modal_instrucciones" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Instrucciones</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <span class="text-center font-weight-bold">Siga las siguientes instrucciones para guardar la canción
-          correctamente</span> <br><br>
-        1) Ingrese el título de la canción en el campo correspondiente <br><br>
-        2) Seleccione el Artista <br><br>
-        3) para ingresar la url del video, dirijase a youtube.com y busque la canción, luego copia la última parte de la
-        url depues del = ejemplo: <br>
-        {% load static %}
-        <img src="{% static 'images/img_copy_paste.png' %}" alt=""><br>
-        posteriormente la pega en el campo correspondiente a (Url del video) <br><br>
-        4) Seleccione el tipo de acordes que va a utilizar, por ejemplo: si va a utilizar acordes en formato inglés {C D
-        E F G A B} deberá seleccionar la opción (Acordes en inglés) <br> si va a utilizar acordes en formato español {DO
-        RE MI FA SOL LA SI} deberá seleccionar la opción (Acordes en español)
-        <br><br> 5) Encierre los acordes en llaves ‘{ }’ por ejemplo: <br>
-        <pre>
-         {A}
-Señor mi Dios
-                   {D}
-Al contemplar los cielos
-        {A      Bm       E      A}
-El firmamento y las estrellas mil  
-          </pre>
-      </div>
-      <div class="modal-footer">
-        <p>Cualquier inquietud puede escribir al correo cancioneroclam@gmail.com</p>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Entendido</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
 <div class="container contenedor_vista_cancion">
 
 
@@ -61,100 +13,89 @@ El firmamento y las estrellas mil
     <h2>{{titulo}}</h2>
 
     <div class="col-12 col-md-12" id="pagina">
-  
-            <form method="POST" action="{% url 'save_song' %}">
 
-            {% csrf_token %}
+      <form method="POST" action="{% url 'save_song' %}">
 
-            <!-- Material input -->
-            <div class="md-form">
-              <input type="text" id="titulo" name="titulo" value="" class="form-control" required>
-              <label for="titulo">Título</label>
-            </div>
+        {% csrf_token %}
 
-            <!-- checkbox para tono-->
-            <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" class="custom-control-input" id="mayor" name="tono" checked value="mayor">
-              <label class="custom-control-label" for="mayor">Mayor</label>
-            </div>
+        <!-- Material input -->
+        <div class="md-form">
+          <input type="text" id="titulo" name="titulo" value="" class="form-control" required>
+          <label for="titulo">Título</label>
+        </div>
 
-            <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" class="custom-control-input" id="menor" name="tono" value="menor">
-              <label class="custom-control-label" for="menor">Menor</label>
-            </div><br><br>
+        <!-- checkbox para tono-->
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="mayor" name="tono" checked value="mayor">
+          <label class="custom-control-label" for="mayor">Mayor</label>
+        </div>
 
-            <div class="row align-items-center">
-              <div class="col md-form">
-                <input type="search" id="nota" name="nota" value="" class="form-control" required list="buscador-notas"
-                  autocomplete="off">
-                <label for="nota" class="active">Nota</label>
-                <datalist id="buscador-notas">
-                  {% for nota in notas %}
-                  <option value="{{nota.nota}}"></option>
-                  {% endfor %}
-                
-                </datalist>
-              </div>
-              <div class="col md-form">
-                <input type="search" id="tipo" name="tipo" value="" class="form-control" required list="buscador-tipos"
-                  autocomplete="off">
-                <label for="tipo" class="active">Tipo</label>
-                <datalist id="buscador-tipos">
-                  {% for tipo in tipos %}
-                  <option value="{{tipo.tipo}}"></option>
-                  {% endfor %}
-                
-                </datalist>
-              </div>
-              <div class="col md-form">
-                <input type="search" id="categoria" name="categoria" value="" class="form-control" required list="buscador-categorias"
-                  autocomplete="off">
-                <label for="categoria" class="active">Categoria</label>
-                <datalist id="buscador-categorias">
-                  {% for categoria in categorias %}
-                  <option value="{{categoria.categoria}}"></option>
-                  {% endfor %}
-                
-                </datalist>
-              </div>
-            
-            </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="menor" name="tono" value="menor">
+          <label class="custom-control-label" for="menor">Menor</label>
+        </div><br><br>
 
-            <div class="md-form">
-              <input type="text" id="autor" name="autor" value="{{autor}}" class="form-control">
-              <label for="autor">Autor</label>
-            </div>
+        <div class="row align-items-center">
+          <div class="col md-form">
+            <input type="search" id="nota" name="nota" value="" class="form-control" required list="buscador-notas"
+              autocomplete="off">
+            <label for="nota" class="active">Nota</label>
+            <datalist id="buscador-notas">
+              {% for nota in notas %}
+              <option value="{{nota.nota}}"></option>
+              {% endfor %}
 
-            <div class="md-form">
+            </datalist>
+          </div>
+          <div class="col md-form">
+            <input type="search" id="tipo" name="tipo" value="" class="form-control" required list="buscador-tipos"
+              autocomplete="off">
+            <label for="tipo" class="active">Tipo</label>
+            <datalist id="buscador-tipos">
+              {% for tipo in tipos %}
+              <option value="{{tipo.tipo}}"></option>
+              {% endfor %}
 
-              <span class="prefix" data-toggle="popover" data-placement="left" title="Instrucciones"
-                data-content="para ingresar la url del video, dirijase a youtube.com y busque la canción, luego copia la última parte de la url depues del =  Posteriormente la pega en el campo correspondiente a (Url del video)"><i
-                  class="fas fa-question-circle"></i></span>
+            </datalist>
+          </div>
+          <div class="col md-form">
+            <input type="search" id="categoria" name="categoria" value="" class="form-control" required
+              list="buscador-categorias" autocomplete="off">
+            <label for="categoria" class="active">Categoria</label>
+            <datalist id="buscador-categorias">
+              {% for categoria in categorias %}
+              <option value="{{categoria.categoria}}"></option>
+              {% endfor %}
 
-              <input type="text" id="urlvideo" name="urlvideo" value="{{url}}" class="form-control">
-              <label for="urlvideo">Url del video</label>
-            </div>
+            </datalist>
+          </div>
 
-            <div class="form-group col-sm-12 col-md-12 col-lg-8">
-              <label for="cancion">Escribir canción</label>
-              <textarea class="form-control" id="cancion" name="cancion" rows="20"
-                style="font-family: 'Georgia'; font-size: 16px; resize: both; z-index: 10000;" required></textarea>
-            </div>
+        </div>
+
+        <div class="md-form">
+          <input type="text" id="autor" name="autor" value="{{autor}}" class="form-control">
+          <label for="autor">Autor</label>
+        </div>
+
+        <div class="md-form">
+
+          <span class="prefix" data-toggle="popover" data-placement="left" title="Instrucciones"
+            data-content="para ingresar la url del video, dirijase a youtube.com y busque la canción, luego copia la última parte de la url depues del =  Posteriormente la pega en el campo correspondiente a (Url del video)"><i
+              class="fas fa-question-circle"></i></span>
+
+          <input type="text" id="urlvideo" name="urlvideo" value="{{url}}" class="form-control">
+          <label for="urlvideo">Url del video</label>
+        </div>
+
+        <div class="form-group col-sm-12 col-md-12 col-lg-8">
+          <label for="cancion">Escribir canción</label>
+          <textarea class="form-control" id="cancion" name="cancion" rows="20"
+            style="font-family: 'Georgia'; font-size: 16px; resize: both; z-index: 10000;" required></textarea>
+        </div>
 
     </div>
 
-
-
-
-    <!--<input type="hidden" id="estado_public" name="estado_public" class="form-control" value="0">
-        <input type="hidden" id="usuario" name="usuario" class="form-control" value="{{request.user.username}}">-->
-
     <button type="submit" class="btn peach-gradient "><i class="fas fa-save"></i> Guardar</button>
-
-    <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal"
-      data-target="#modal_instrucciones">
-      Instrucciones <i class="fas fa-question-circle"></i>
-    </button>
 
     </form>
 
@@ -175,20 +116,3 @@ El firmamento y las estrellas mil
 
 
 {% endblock %}
-
-
-<!--<script>
-
-      $(document).ready(function () {
-       
-        jQuery.noConflict(); 
-        $("#modal_instrucciones").modal("show");
-
-      });
-
-  </script>-->
-
-
-
-
-<!-- Optional JavaScript -->
